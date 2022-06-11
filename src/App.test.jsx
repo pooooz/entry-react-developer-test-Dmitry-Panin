@@ -6,6 +6,6 @@ import App from './App';
 describe('Add test', () => {
   it('Render test', () => {
     render(<App />);
-    expect(screen.getByText(/Basic layout/)).toBeInTheDocument();
+    expect(screen.getByText(/Loading/)).toBeInTheDocument();
   });
 });
