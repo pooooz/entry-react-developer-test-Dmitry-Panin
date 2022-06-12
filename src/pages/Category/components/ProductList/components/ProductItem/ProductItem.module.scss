@@ -1,0 +1,43 @@
+.card {
+  padding: 16px;
+  text-align: center;
+  max-width: 400px;
+  max-height: 470px;
+
+  &__img {
+    width: 385px;
+    height: 385px;
+    object-fit: cover;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  &__info {
+    text-align: left;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.card:hover {
+  box-shadow: 0 4px 35px rgba(168, 172, 176, 0.4);
+}
+
+@media (max-width: 1450px) {
+  .card {
+    max-width: 385px;
+    max-height: 445px;
+
+    &__img {
+      width: 355px;
+      height: 355px;
+      object-fit: cover;
+    }
+  }
+}
