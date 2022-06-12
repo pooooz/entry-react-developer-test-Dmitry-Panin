@@ -8,3 +8,15 @@
     text-transform: capitalize;
   }
 }
+
+@media (max-width: 1520px) {
+  .category {
+    padding: 80px;
+  }
+}
+
+@media (max-width: 1450px) {
+  .category {
+    padding: 80px 100px;
+  }
+}

@@ -1,0 +1,15 @@
+.product_list {
+  display: grid;
+  padding: 0;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  grid-row-gap: 90px;
+  grid-column-gap: 40px;
+  list-style-type: none;
+}
+
+@media (max-width: 1200px) {
+  .product_list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
