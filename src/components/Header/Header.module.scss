@@ -6,6 +6,7 @@
 
   &__categories {
     display: flex;
+    padding: 0;
     font-size: 16px;
     font-weight: 400;
     line-height: 19px;
@@ -14,7 +15,7 @@
   }
 
   &__category {
-    margin: 0 0 0 15px;
+    margin: 0 15px 0 0;
     color: #1D1F22;
     text-decoration: none;
     transition: color 500ms;
@@ -39,7 +40,7 @@
 
   &__category_active {
     position: relative;
-    margin: 0 0 0 15px;
+    margin: 0 15px 0 0;
     font-weight: 600;
     color: #5ECE7B;
     text-decoration: none;
