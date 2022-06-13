@@ -5,6 +5,7 @@ export const GET_PRODUCTS_BY_CATEGORY = (category) => gql`
   category(input: {title: "${category}"}) {
     name
     products {
+      brand
       name
       id
       inStock
