@@ -36,6 +36,14 @@ class AppRouter extends React.Component {
                   />
                 ))}
               </Route>
+              <Route
+                path="*"
+                element={
+                  <h2 style={{ color: '#00BFFF', margin: '10px' }}>
+                    Wrong path, page cannot be found
+                  </h2>
+                }
+              />
             </Routes>
           </BrowserRouter>
         );
