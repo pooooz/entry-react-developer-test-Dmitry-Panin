@@ -4,6 +4,7 @@
     "paths": {
       "components/*": ["components/*"],
       "queries": ["queries/*"],
+      "icons": ["icons/*"],
       "public": ["../public/*"]
     }
   },
