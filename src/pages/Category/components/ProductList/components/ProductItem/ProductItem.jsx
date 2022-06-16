@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ReactComponent as CartIcon } from 'icons/cartIcon.svg';
 import styles from './ProductItem.module.scss';
 
 export class ProductItem extends React.Component {
@@ -21,6 +22,9 @@ export class ProductItem extends React.Component {
               Number(this.props.product.prices[0].amount).toFixed(2)}
           </span>
         </div>
+        <button className={styles.card__add_button}>
+          <CartIcon className={styles.card__cart_icon} />
+        </button>
       </li>
     );
   }

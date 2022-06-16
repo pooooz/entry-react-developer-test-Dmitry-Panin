@@ -3,6 +3,7 @@
   justify-content: space-between;
   min-width: 80px;
   padding: 0 100px 0 100px;
+  color: #1D1F22;
 
   &__categories {
     display: flex;
@@ -80,5 +81,6 @@
     min-width: 20px;
     min-height: 20px;
     cursor: pointer;
+    fill: #43464E;
   }
 }

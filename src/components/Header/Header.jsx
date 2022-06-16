@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
 import styles from './Header.module.scss';
-import { ReactComponent as PaperBagLogo } from './icons/paperBagIcon.svg';
-import { ReactComponent as CartIcon } from './icons/cartIcon.svg';
-import { ReactComponent as DropdownIcon } from './icons/dropdownIcon.svg';
+import { ReactComponent as PaperBagLogo } from 'icons/paperBagIcon.svg';
+import { ReactComponent as CartIcon } from 'icons/cartIcon.svg';
+import { ReactComponent as DropdownIcon } from 'icons/dropdownIcon.svg';
 
 export class Header extends React.Component {
   render() {

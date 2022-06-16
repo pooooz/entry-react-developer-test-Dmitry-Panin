@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   padding: 16px;
   text-align: center;
   max-width: 400px;
@@ -23,10 +24,40 @@
     font-size: 18px;
     font-weight: 500;
   }
+
+  &__add_button {
+    cursor: pointer;
+    display: none;
+    padding: 14px;
+    position: absolute;
+    top: 80%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #5ECE7B;
+    border: none;
+    transition: background 400ms;
+  }
+
+  &__add_button:hover {
+    background: #51AD6A;
+  }
+
+  &__add_button:active {
+    padding: 15px;
+  }
+
+  &__cart_icon {
+    fill: #FFFFFF;
+  }
 }
 
 .card:hover {
   box-shadow: 0 4px 35px rgba(168, 172, 176, 0.4);
+}
+
+.card:hover .card__add_button {
+  display: flex;
 }
 
 @media (max-width: 1450px) {
