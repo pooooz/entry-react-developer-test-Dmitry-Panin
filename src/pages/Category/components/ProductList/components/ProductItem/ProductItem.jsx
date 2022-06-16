@@ -5,7 +5,6 @@ import styles from './ProductItem.module.scss';
 
 export class ProductItem extends React.Component {
   render() {
-    console.log(this.props.product);
     return (
       <li className={styles.card}>
         <img
