@@ -28,7 +28,7 @@ export class Header extends React.Component {
               </li>
             ))}
           </ul>
-          <PaperBagLogo />
+          <PaperBagLogo className={styles.header__paper_bag} />
           <div className={styles.header__shopping_area}>
             <div className={styles.header__currency_area}>
               $
