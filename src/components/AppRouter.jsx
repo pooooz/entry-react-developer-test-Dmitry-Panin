@@ -5,6 +5,7 @@ import { graphql } from '@apollo/client/react/hoc';
 import { GET_ALL_CATEGORIES } from 'queries/categories';
 import { Header } from 'components/Header/Header';
 import { Category } from 'pages/Category/Category';
+import { ProductWithRouter } from 'pages/Product/Product';
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class AppRouter extends React.Component {
                     key={1}
                   />
                 ))}
+                <Route path="items/:id" element={<ProductWithRouter />} />
               </Route>
               <Route
                 path="*"
