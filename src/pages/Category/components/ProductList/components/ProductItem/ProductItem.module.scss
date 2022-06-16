@@ -5,6 +5,11 @@
   max-width: 400px;
   max-height: 470px;
 
+  &__product_link {
+    text-decoration: none;
+    color: #1D1F22;
+  }
+
   &__img {
     width: 385px;
     height: 385px;
