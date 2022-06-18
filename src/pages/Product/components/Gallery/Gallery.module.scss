@@ -1,0 +1,26 @@
+.gallery {
+  display: flex;
+  justify-content: space-between;
+
+  &__side {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__unselected {
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    margin: 0 0 40px 0;
+    object-fit: cover;
+  }
+
+  &__selected_wrap {
+    margin: 0 0 0 40px;
+  }
+
+  &__selected {
+    width: 610px;
+    object-fit: cover;
+  }
+}
