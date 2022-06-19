@@ -2,10 +2,10 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
+import { CurrencySwitcherWithConnect } from './components/CurrencySwitcher/CurrencySwitcher';
 import styles from './Header.module.scss';
 import { ReactComponent as PaperBagLogo } from 'icons/paperBagIcon.svg';
 import { ReactComponent as CartIcon } from 'icons/cartIcon.svg';
-import { ReactComponent as DropdownIcon } from 'icons/dropdownIcon.svg';
 
 export class Header extends React.Component {
   render() {
@@ -30,10 +30,7 @@ export class Header extends React.Component {
           </ul>
           <PaperBagLogo className={styles.header__paper_bag} />
           <div className={styles.header__shopping_area}>
-            <div className={styles.header__currency_area}>
-              $
-              <DropdownIcon className={styles.header__dropdown} />
-            </div>
+            <CurrencySwitcherWithConnect currencies={this.props.currencies} />
             <CartIcon className={styles.header__cart_icon} />
           </div>
         </header>

@@ -1,12 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as CartIcon } from 'icons/cartIcon.svg';
 import styles from './ProductItem.module.scss';
 
-export class ProductItem extends React.Component {
+class ProductItem extends React.Component {
   render() {
     const product = this.props.product;
+    const price = product.prices.find(
+      (element) => element.currency.label === this.props.currencyLabel
+    );
     return (
       <li className={styles.card}>
         <Link to={`/items/${product.id}`} className={styles.card__product_link}>
@@ -20,8 +24,7 @@ export class ProductItem extends React.Component {
               className={styles.card__title}
             >{`${product.brand} ${product.name}`}</h3>
             <span className={styles.card__price}>
-              {product.prices[0].currency.symbol +
-                Number(product.prices[0].amount).toFixed(2)}
+              {price.currency.symbol + Number(price.amount).toFixed(2)}
             </span>
           </div>
         </Link>
@@ -32,3 +35,11 @@ export class ProductItem extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currencyLabel: state.currency.label,
+  };
+};
+
+export const ProductItemWithConnect = connect(mapStateToProps)(ProductItem);

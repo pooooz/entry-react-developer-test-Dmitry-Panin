@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './AddForm.module.scss';
+import { connect } from 'react-redux';
 
 export class AddForm extends React.Component {
   constructor(props) {
@@ -12,7 +13,6 @@ export class AddForm extends React.Component {
         ),
       })),
     };
-    console.log(this.props);
   }
 
   handleChange = (attributeId, itemId) => {
@@ -33,6 +33,11 @@ export class AddForm extends React.Component {
   };
 
   render() {
+    const product = this.props.product;
+    const price = product.prices.find(
+      (element) => element.currency.label === this.props.currencyLabel
+    );
+
     return (
       <form
         onSubmit={(event) => {
@@ -40,8 +45,8 @@ export class AddForm extends React.Component {
         }}
         className={styles.product__form}
       >
-        <h2 className={styles.product__brand}>{this.props.product.brand}</h2>
-        <h3 className={styles.product__name}>{this.props.product.name}</h3>
+        <h2 className={styles.product__brand}>{product.brand}</h2>
+        <h3 className={styles.product__name}>{product.name}</h3>
         {this.state.attributes.map((attribute) => (
           <fieldset key={attribute.id} className={styles.product__attribute}>
             <legend className={styles.product__attribute_legend}>
@@ -99,16 +104,23 @@ export class AddForm extends React.Component {
         <h4 className={styles.product__price_header}>Price:</h4>
         <h4 className={styles.product__price}>
           <var className={styles.product__price_value}>
-            {this.props.product.prices[0].currency.symbol +
-              Number(this.props.product.prices[0].amount).toFixed(2)}
+            {price.currency.symbol + Number(price.amount).toFixed(2)}
           </var>
         </h4>
         <button className={styles.product__add_button}>Add to cart</button>
         <div
-          dangerouslySetInnerHTML={{ __html: this.props.product.description }}
+          dangerouslySetInnerHTML={{ __html: product.description }}
           className={styles.product__description}
         ></div>
       </form>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currencyLabel: state.currency.label,
+  };
+};
+
+export const AddFormWithConnect = connect(mapStateToProps)(AddForm);
