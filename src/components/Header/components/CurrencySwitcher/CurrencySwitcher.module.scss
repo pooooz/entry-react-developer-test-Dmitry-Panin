@@ -1,0 +1,39 @@
+.currencySwitcher {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 0 25px 0 0 ;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1D1F22;
+
+  &__dropdown_icon {
+    margin: 0 0 0 10px
+  }
+
+  &__dropdown {
+    position: absolute;
+    right: 69px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    top: 50px;
+    z-index: 1;
+  }
+
+  &__dropdown_item {
+    padding: 8px 40px 8px 20px;
+    font-size: 18px;
+    line-height: 29px;
+    font-weight: 500;
+  }
+
+  &__dropdown_item_active {
+    padding: 8px 40px 8px 20px;
+    font-size: 18px;
+    line-height: 29px;
+    font-weight: 500;
+    background: #EEEEEE;
+  }
+}
+

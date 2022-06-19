@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { graphql } from '@apollo/client/react/hoc';
 
-import { GET_ALL_CATEGORIES } from 'queries/categories';
+import { GET_CATEGORIES_AND_CURRENCIES } from 'queries/categories_currencies';
 import { Header } from 'components/Header/Header';
 import { Category } from 'pages/Category/Category';
 import { ProductWithRouter } from 'pages/Product/Product';
@@ -26,6 +26,7 @@ class AppRouter extends React.Component {
                       this.props.data.categories,
                       (category) => category.name
                     )}
+                    currencies={this.props.data.currencies}
                   />
                 }
               >
@@ -56,4 +57,6 @@ class AppRouter extends React.Component {
   }
 }
 
-export const AppRouterWithCategories = graphql(GET_ALL_CATEGORIES)(AppRouter);
+export const AppRouterWithCategories = graphql(GET_CATEGORIES_AND_CURRENCIES)(
+  AppRouter
+);

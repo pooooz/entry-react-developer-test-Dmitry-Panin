@@ -3,6 +3,7 @@
     "baseUrl": "src",
     "paths": {
       "components/*": ["components/*"],
+      "store/*": ["store/*"],
       "HOC": ["HOC/*"],
       "queries": ["queries/*"],
       "icons": ["icons/*"],

@@ -1,4 +1,7 @@
 import React, { Suspense } from 'react';
+import { Provider } from 'react-redux';
+
+import { store } from './store';
 
 const AppRouterWithCategories = React.lazy(() =>
   Promise.all([
@@ -11,9 +14,11 @@ const AppRouterWithCategories = React.lazy(() =>
 class App extends React.Component {
   render() {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <AppRouterWithCategories />
-      </Suspense>
+      <Provider store={store}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <AppRouterWithCategories />
+        </Suspense>
+      </Provider>
     );
   }
 }

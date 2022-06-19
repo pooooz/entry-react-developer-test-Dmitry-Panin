@@ -72,19 +72,6 @@
     align-items: center;
   }
 
-  &__currency_area {
-    display: flex;
-    align-items: center;
-    margin: 0 25px 0 0 ;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  &__dropdown {
-    margin: 0 0 0 10px
-  }
-
   &__cart_icon {
     min-width: 20px;
     min-height: 20px;
