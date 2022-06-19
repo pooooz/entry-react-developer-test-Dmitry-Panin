@@ -14,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npx eslint ./src --ext .js,.jsx --fix && react-scripts start",
     "build": "react-scripts build",
     "test": "npx eslint ./src --ext .js,.jsx --fix && jest",
     "test:coverage": "jest --coverage --colors",
