@@ -28,6 +28,7 @@ export const GET_PRODUCT_BY_ID = (id) => gql`
       gallery
       brand
       name
+      id
       attributes {
         id
         name
