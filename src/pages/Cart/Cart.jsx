@@ -17,14 +17,13 @@ class Cart extends React.Component {
       <section className={styles.cart}>
         <h1 className={styles.cart__header}>Cart</h1>
         <hr />
-        {this.props.products.map((elem) => (
-          <div key={elem.id}>
+        {this.props.products.map((elem, index) => (
+          <div key={elem.id + index}>
             <ProductCard
-              base={'cart'}
               product={elem}
               currencyLabel={this.props.currencyLabel}
             />
-            <hr />
+            <hr style={{ margin: '32px 0 24px 0' }} />
           </div>
         ))}
       </section>

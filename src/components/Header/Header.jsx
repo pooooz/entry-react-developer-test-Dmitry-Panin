@@ -28,8 +28,8 @@ export class Header extends React.Component {
               </li>
             ))}
           </ul>
-          <NavLink to="cart">
-            <PaperBagLogo className={styles.header__paper_bag} />
+          <NavLink to="cart" className={styles.header__paper_bag}>
+            <PaperBagLogo />
           </NavLink>
           <div className={styles.header__shopping_area}>
             <CurrencySwitcherWithConnect currencies={this.props.currencies} />

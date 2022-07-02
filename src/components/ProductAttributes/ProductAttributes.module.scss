@@ -43,7 +43,18 @@
   border: 1px solid #1D1F22;
 }
 
-.attribute_input:checked+.attribute_label {
+.attribute_label_checked {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 45px;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400;
+  border: 1px solid #1D1F22;
+
   color: #FFFFFF;
   background-color: #1D1F22;
 }
@@ -58,19 +69,23 @@
 
 .attribute_label_swatch {
   padding: 2px;
-  cursor: pointer;
   display: flex;
   width: 32px;
   height: 32px;
 }
 
+.attribute_label_swatch_checked {
+  padding: 2px;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  outline: 2px solid #5ECE7B;
+}
+
 .attribute_swatch_color {
   display: block;
+  cursor: pointer;
   width: 32px;
   height: 32px;
   outline: 1px solid #D0D0D0;
-}
-
-.attribute_input_swatch:checked+.attribute_label_swatch {
-  outline: 2px solid #5ECE7B;
 }
