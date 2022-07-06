@@ -24,8 +24,27 @@ const cartSlice = createSlice({
         state.productsCount++;
       }
     },
+
+    changeQuantity(state, action) {
+      const productIndex = current(state).products.findIndex(
+        (element) =>
+          element.id === action.payload.product.id &&
+          JSON.stringify(element.attributes) ===
+            JSON.stringify(action.payload.product.attributes)
+      );
+      state.products[productIndex].quantity += action.payload.count;
+      state.productsCount += action.payload.count;
+      if (state.products[productIndex].quantity === 0) {
+        state.products.splice(productIndex, 1);
+      }
+    },
+
+    order(state) {
+      state.products.splice(0, state.products.length);
+      state.productsCount = 0;
+    },
   },
 });
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, changeQuantity, order } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

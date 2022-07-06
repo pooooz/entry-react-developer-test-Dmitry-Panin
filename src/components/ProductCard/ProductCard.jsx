@@ -72,6 +72,12 @@ export class ProductCard extends React.Component {
         <div className={styles.product__quantity}>
           <QuantityButton
             className={styles.product__quantity_button}
+            onClick={() => {
+              this.props.changeQuantity({
+                product: this.props.product,
+                count: 1,
+              });
+            }}
             theme={this.props.theme}
           >
             +
@@ -79,6 +85,12 @@ export class ProductCard extends React.Component {
           {quantity}
           <QuantityButton
             className={styles.product__quantity_button}
+            onClick={() => {
+              this.props.changeQuantity({
+                product: this.props.product,
+                count: -1,
+              });
+            }}
             theme={this.props.theme}
           >
             -
