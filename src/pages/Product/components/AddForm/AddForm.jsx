@@ -1,6 +1,19 @@
 import React from 'react';
-import styles from './AddForm.module.scss';
 import { connect } from 'react-redux';
+
+import { ProductAttributes } from 'components/ProductAttributes/ProductAttributes';
+import { addProduct } from 'store/cart/cart';
+import styles from './AddForm.module.scss';
+
+const mapStateToProps = (state) => {
+  return {
+    currencyLabel: state.currency.label,
+  };
+};
+
+const mapDispatchToProps = {
+  addProduct,
+};
 
 export class AddForm extends React.Component {
   constructor(props) {
@@ -47,67 +60,25 @@ export class AddForm extends React.Component {
       >
         <h2 className={styles.product__brand}>{product.brand}</h2>
         <h3 className={styles.product__name}>{product.name}</h3>
-        {this.state.attributes.map((attribute) => (
-          <fieldset key={attribute.id} className={styles.product__attribute}>
-            <legend className={styles.product__attribute_legend}>
-              {attribute.name}:
-            </legend>
-            <ul className={styles.product__attribute_list}>
-              {attribute.items.map((item) =>
-                attribute.type === 'swatch' ? (
-                  <li
-                    className={styles.product__attribute_item_swatch}
-                    key={item.id}
-                  >
-                    <input
-                      type="radio"
-                      id={item.id}
-                      name={attribute.name}
-                      value={item.value}
-                      className={styles.product__attribute_input_swatch}
-                      checked={item.checked}
-                      onChange={() => this.handleChange(attribute.id, item.id)}
-                    />
-                    <label
-                      htmlFor={item.id}
-                      className={styles.product__attribute_label_swatch}
-                    >
-                      <span
-                        className={styles.product__attribute_swatch_color}
-                        style={{ background: item.value }}
-                      ></span>
-                    </label>
-                  </li>
-                ) : (
-                  <li className={styles.product__attribute_item} key={item.id}>
-                    <input
-                      type="radio"
-                      id={item.id}
-                      name={attribute.name}
-                      value={item.value}
-                      className={styles.product__attribute_input}
-                      checked={item.checked}
-                      onChange={() => this.handleChange(attribute.id, item.id)}
-                    />
-                    <label
-                      htmlFor={item.id}
-                      className={styles.product__attribute_label}
-                    >
-                      <span>{item.value}</span>
-                    </label>
-                  </li>
-                )
-              )}
-            </ul>
-          </fieldset>
-        ))}
+        <ProductAttributes
+          attributes={this.state.attributes}
+          change={this.handleChange}
+        />
         <h4 className={styles.product__price_header}>Price:</h4>
         <h4 className={styles.product__price}>
           <var className={styles.product__price_value}>
             {price.currency.symbol + Number(price.amount).toFixed(2)}
           </var>
         </h4>
-        <button className={styles.product__add_button}>Add to cart</button>
+        <button
+          className={styles.product__add_button}
+          onClick={() => {
+            const attributes = this.state.attributes;
+            this.props.addProduct({ ...product, attributes });
+          }}
+        >
+          Add to cart
+        </button>
         <div
           dangerouslySetInnerHTML={{ __html: product.description }}
           className={styles.product__description}
@@ -117,10 +88,7 @@ export class AddForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currencyLabel: state.currency.label,
-  };
-};
-
-export const AddFormWithConnect = connect(mapStateToProps)(AddForm);
+export const AddFormWithConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddForm);

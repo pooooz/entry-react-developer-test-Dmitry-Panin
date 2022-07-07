@@ -6,6 +6,7 @@ import { GET_CATEGORIES_AND_CURRENCIES } from 'queries/categories_currencies';
 import { Header } from 'components/Header/Header';
 import { Category } from 'pages/Category/Category';
 import { ProductWithRouter } from 'pages/Product/Product';
+import { CartWithConnect } from 'pages/Cart/Cart';
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class AppRouter extends React.Component {
                   />
                 ))}
                 <Route path="items/:id" element={<ProductWithRouter />} />
+                <Route path="cart" element={<CartWithConnect />} />
               </Route>
               <Route
                 path="*"
