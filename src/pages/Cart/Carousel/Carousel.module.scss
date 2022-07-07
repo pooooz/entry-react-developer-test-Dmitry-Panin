@@ -1,0 +1,38 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+
+  &__image_wrap {
+    position: relative;
+  }
+
+  &__image {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  &__arrow_box {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.73);
+  }
+
+  &__arrow_box_left {
+    top: 250px;
+    left: 128px
+  }
+
+  &__arrow_box_right {
+    top: 250px;
+    left: 160px;
+  }
+}

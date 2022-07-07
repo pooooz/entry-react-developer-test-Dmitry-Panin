@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ProductCard } from 'components/ProductCard/ProductCard';
+import { Carousel } from './Carousel/Carousel';
 import { changeQuantity, order } from 'store/cart/cart';
 import styles from './Cart.module.scss';
 
@@ -57,34 +58,31 @@ class Cart extends React.Component {
         ) : (
           this.props.products.map((elem, index) => (
             <div key={elem.id + index}>
-              <ProductCard
-                product={elem}
-                currencyLabel={this.props.currencyLabel}
-                changeQuantity={this.props.changeQuantity}
-              />
+              <div className={styles.cart__element}>
+                <ProductCard
+                  product={elem}
+                  currencyLabel={this.props.currencyLabel}
+                  changeQuantity={this.props.changeQuantity}
+                />
+                <Carousel images={elem.gallery} />
+              </div>
               <hr style={{ margin: '32px 0 24px 0' }} />
             </div>
           ))
         )}
         <form className={styles.cart__summary} onSubmit={this.handleSubmit}>
-          <h4 className={styles.cart__summary_item}>
-            Tax 21%:{' '}
-            <span className={styles.cart__summary_item_value}>
-              {this.props.currencySymbol + (total * 0.21).toFixed(2)}
-            </span>
-          </h4>
-          <h4 className={styles.cart__summary_item}>
-            Quantity:{' '}
-            <span className={styles.cart__summary_item_value}>
-              {this.props.productsCount}
-            </span>
-          </h4>
-          <h4 className={styles.cart__summary_item}>
-            Total:{' '}
-            <span className={styles.cart__summary_item_value}>
-              {this.props.currencySymbol + total.toFixed(2)}
-            </span>
-          </h4>
+          <h4 className={styles.cart__summary_item}>Tax 21%: </h4>
+          <span className={styles.cart__summary_item_value}>
+            {this.props.currencySymbol + (total * 0.21).toFixed(2)}
+          </span>
+          <h4 className={styles.cart__summary_item}>Quantity: </h4>
+          <span className={styles.cart__summary_item_value}>
+            {this.props.productsCount}
+          </span>
+          <h4 className={styles.cart__summary_item}>Total: </h4>
+          <span className={styles.cart__summary_item_value}>
+            {this.props.currencySymbol + total.toFixed(2)}
+          </span>
           <button className={styles.cart__summary_button}>Order</button>
         </form>
       </section>

@@ -1,6 +1,7 @@
 .product {
   display: flex;
   justify-content: space-between;
+  flex-grow: 9;
   color: #1D1F22;
 
   &__brand {

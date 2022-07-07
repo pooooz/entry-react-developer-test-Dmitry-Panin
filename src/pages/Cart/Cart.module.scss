@@ -9,7 +9,13 @@
     text-transform: uppercase;
   }
 
+  &__element {
+    display: flex;
+  }
+
   &__summary {
+    display: grid;
+    grid-template-columns: repeat(2, 110px);
     font-size: 24px;
     line-height: 28px;
   }

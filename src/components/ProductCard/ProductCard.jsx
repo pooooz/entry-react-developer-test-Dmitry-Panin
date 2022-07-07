@@ -53,7 +53,7 @@ export class ProductCard extends React.Component {
     );
     return (
       <section className={styles.product}>
-        <div className={styles.product__info}>
+        <div>
           <Brand className={styles.product__brand} theme={this.props.theme}>
             {brand}
           </Brand>
