@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
   return {
     products: state.cart.products,
     currencyLabel: state.currency.label,
+    currencySymbol: state.currency.symbol,
     productsCount: state.cart.productsCount,
   };
 };
@@ -69,7 +70,7 @@ class Cart extends React.Component {
           <h4 className={styles.cart__summary_item}>
             Tax 21%:{' '}
             <span className={styles.cart__summary_item_value}>
-              {(total * 0.21).toFixed(2)}
+              {this.props.currencySymbol + (total * 0.21).toFixed(2)}
             </span>
           </h4>
           <h4 className={styles.cart__summary_item}>
@@ -81,7 +82,7 @@ class Cart extends React.Component {
           <h4 className={styles.cart__summary_item}>
             Total:{' '}
             <span className={styles.cart__summary_item_value}>
-              {total.toFixed(2)}
+              {this.props.currencySymbol + total.toFixed(2)}
             </span>
           </h4>
           <button className={styles.cart__summary_button}>Order</button>
