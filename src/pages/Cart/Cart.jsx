@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { ProductCard } from 'components/ProductCard/ProductCard';
@@ -56,19 +56,21 @@ class Cart extends React.Component {
         {this.props.productsCount === 0 ? (
           <h3>Cart is empty</h3>
         ) : (
-          this.props.products.map((elem, index) => (
-            <div key={elem.id + index}>
-              <div className={styles.cart__element}>
-                <ProductCard
-                  product={elem}
-                  currencyLabel={this.props.currencyLabel}
-                  changeQuantity={this.props.changeQuantity}
-                />
-                <Carousel images={elem.gallery} />
-              </div>
-              <hr style={{ margin: '32px 0 24px 0' }} />
-            </div>
-          ))
+          <ul className={styles.cart__list}>
+            {this.props.products.map((elem, index) => (
+              <Fragment key={elem.id + index}>
+                <li className={styles.cart__element}>
+                  <ProductCard
+                    product={elem}
+                    currencyLabel={this.props.currencyLabel}
+                    changeQuantity={this.props.changeQuantity}
+                  />
+                  <Carousel images={elem.gallery} />
+                </li>
+                <hr style={{ margin: '32px 0 24px 0' }} />
+              </Fragment>
+            ))}
+          </ul>
         )}
         <form className={styles.cart__summary} onSubmit={this.handleSubmit}>
           <h4 className={styles.cart__summary_item}>Tax 21%: </h4>
