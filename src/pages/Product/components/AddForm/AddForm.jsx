@@ -50,7 +50,6 @@ export class AddForm extends React.Component {
     const price = product.prices.find(
       (element) => element.currency.label === this.props.currencyLabel
     );
-
     return (
       <form
         onSubmit={(event) => {
@@ -71,11 +70,16 @@ export class AddForm extends React.Component {
           </var>
         </h4>
         <button
-          className={styles.product__add_button}
+          className={
+            product.inStock
+              ? styles.product__add_button
+              : styles.product__add_button_disabled
+          }
           onClick={() => {
             const attributes = this.state.attributes;
             this.props.addProduct({ ...product, attributes });
           }}
+          disabled={!product.inStock}
         >
           Add to cart
         </button>
