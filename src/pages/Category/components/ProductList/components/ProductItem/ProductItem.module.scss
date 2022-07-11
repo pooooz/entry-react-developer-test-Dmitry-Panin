@@ -5,6 +5,28 @@
   max-width: 400px;
   max-height: 470px;
 
+  &__overlay {
+    position: relative;
+  }
+
+  &__overlay:before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: 'out of stock';
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 0;
+    text-transform: uppercase;
+    color: #8D8F9A;
+
+    font-size: 24px;
+    line-height: 38px;
+    font-weight: 400;
+  }
+
   &__product_link {
     text-decoration: none;
     color: #1D1F22;
@@ -22,6 +44,11 @@
   }
 
   &__info {
+    text-align: left;
+  }
+
+  &__info_disabled {
+    color: #8D8F9A;
     text-align: left;
   }
 
@@ -44,6 +71,20 @@
     transition: background 400ms;
   }
 
+  &__add_button_disabled {
+    cursor: not-allowed;
+    display: none;
+    padding: 14px;
+    position: absolute;
+    top: 80%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #95EFAA;
+    border: none;
+    transition: background 400ms;
+  }
+
   &__add_button:hover {
     background: #51AD6A;
   }
@@ -62,6 +103,10 @@
 }
 
 .card:hover .card__add_button {
+  display: flex;
+}
+
+.card:hover .card__add_button_disabled {
   display: flex;
 }
 

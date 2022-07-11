@@ -40,12 +40,18 @@ class ProductItem extends React.Component {
     return (
       <li className={styles.card}>
         <Link to={`/items/${product.id}`} className={styles.card__product_link}>
-          <img
-            src={product.gallery[0]}
-            alt="Product image"
-            className={styles.card__img}
-          />
-          <div className={styles.card__info}>
+          <div className={product.inStock ? null : styles.card__overlay}>
+            <img
+              src={product.gallery[0]}
+              alt="Product image"
+              className={styles.card__img}
+            />
+          </div>
+          <div
+            className={
+              product.inStock ? styles.card__info : styles.card__info_disabled
+            }
+          >
             <h3
               className={styles.card__title}
             >{`${product.brand} ${product.name}`}</h3>
@@ -55,8 +61,13 @@ class ProductItem extends React.Component {
           </div>
         </Link>
         <button
-          className={styles.card__add_button}
+          className={
+            product.inStock
+              ? styles.card__add_button
+              : styles.card__add_button_disabled
+          }
           onClick={() => this.handleClick(product)}
+          disabled={!product.inStock}
         >
           <CartIcon className={styles.card__cart_icon} />
         </button>
