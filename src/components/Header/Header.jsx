@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
 import { CurrencySwitcherWithConnect } from './components/CurrencySwitcher/CurrencySwitcher';
+import { CartOverlayWithConnect } from './components/CartOverlay/CartOverlay';
 import styles from './Header.module.scss';
 import { ReactComponent as PaperBagLogo } from 'icons/paperBagIcon.svg';
-import { ReactComponent as CartIcon } from 'icons/cartIcon.svg';
 
 export class Header extends React.Component {
   render() {
@@ -33,7 +33,7 @@ export class Header extends React.Component {
           </NavLink>
           <div className={styles.header__shopping_area}>
             <CurrencySwitcherWithConnect currencies={this.props.currencies} />
-            <CartIcon className={styles.header__cart_icon} />
+            <CartOverlayWithConnect />
           </div>
         </header>
         <main>
