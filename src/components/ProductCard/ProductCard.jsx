@@ -45,6 +45,14 @@ const QuantityButton = styled.button`
     `}
 `;
 
+const Quantity = styled.span`
+  ${(props) =>
+    props.theme === 'overlay' &&
+    css`
+      font-size: 16px;
+    `}
+`;
+
 export class ProductCard extends React.Component {
   render() {
     const { brand, name, attributes, quantity } = this.props.product;
@@ -82,7 +90,7 @@ export class ProductCard extends React.Component {
           >
             +
           </QuantityButton>
-          {quantity}
+          <Quantity theme={this.props.theme}>{quantity}</Quantity>
           <QuantityButton
             className={styles.product__quantity_button}
             onClick={() => {

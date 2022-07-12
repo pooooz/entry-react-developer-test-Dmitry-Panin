@@ -9,6 +9,11 @@
     text-transform: uppercase;
   }
 
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+
   &__element {
     display: flex;
   }
