@@ -1,0 +1,129 @@
+.header__cart_icon {
+  min-width: 20px;
+  min-height: 20px;
+  cursor: pointer;
+  fill: #43464E;
+}
+
+.background {
+  position: absolute;
+  overflow: auto;
+  top: 51px;
+  left: 0;
+  background: rgba(57, 55, 72, 0.22);
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  width: 320px;
+  padding: 16px;
+  right: 100px;
+  z-index: 1;
+  background: #FFFFFF;
+  outline: 1px solid #EEEEEE;
+
+  &__heading {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 700;
+    color: #1D1F22;
+  }
+
+  &__list {
+    max-height: 450px;
+    margin: 20px 0;
+    padding: 3px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  &__list::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &__list::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 10px;
+  }
+
+  &__list::-webkit-scrollbar-thumb {
+    background: #8F8F8F;
+    border-radius: 10px;
+  }
+
+  &__list::-webkit-scrollbar-thumb:hover {
+    background: #757474;
+  }
+
+  &__element {
+    margin: 0 0 40px 0;
+    display: flex;
+  }
+
+  &__image {
+    width: 120px;
+    height: 190px;
+    margin: 0 0 0 5px;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  &__total_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__total {
+    margin: 0;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+    color: #1D1F22;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 0 0 0;
+  }
+
+  &__cart_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 45px;
+    background: #FFFFFF;
+    outline: 1px solid #1D1F22;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 600;
+    color: #1D1F22;
+  }
+
+  &__order_button {
+    cursor: pointer;
+    width: 140px;
+    height: 45px;
+    border: none;
+    background: #5ECE7B;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 600;
+    color: #FFFFFF;
+    transition: background 300ms;
+  }
+
+  &__order_button:hover {
+    background: #51AD6A;
+  }
+
+  &__order_button:active {
+    outline: 2px solid #51AD6A;
+  }
+}
