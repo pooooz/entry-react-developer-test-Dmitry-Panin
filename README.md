@@ -1,4 +1,4 @@
-# Entry react developer test task
+# Entry React developer test task
 ## Warning❗💥
 The provided endpoint is a GraphQL. If you want to run the application, then you need to download the endpoint. Available here: [GraphQL endpoint](https://github.com/scandiweb/junior-react-endpoint)
 ## How to launch the application
