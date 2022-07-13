@@ -74,11 +74,18 @@ class CartOverlay extends React.Component {
     const total = this.countTotal();
     return (
       <>
-        <CartIcon
-          ref={this.cartIconRef}
-          className={styles.header__cart_icon}
-          onClick={() => this.setState({ isVisible: !this.state.isVisible })}
-        />
+        <div className={styles.cart_icon}>
+          <CartIcon
+            ref={this.cartIconRef}
+            className={styles.header__cart_icon}
+            onClick={() => this.setState({ isVisible: !this.state.isVisible })}
+          />
+          {Boolean(this.props.productsCount) && (
+            <span className={styles.products_count}>
+              {this.props.productsCount}
+            </span>
+          )}
+        </div>
         {this.state.isVisible && (
           <div
             className={styles.background}
