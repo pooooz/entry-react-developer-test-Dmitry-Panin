@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from './store';
+import { store, persistor } from './store';
 
 const AppRouterWithCategories = React.lazy(() =>
   Promise.all([
@@ -16,7 +17,9 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Suspense fallback={<div>Loading...</div>}>
-          <AppRouterWithCategories />
+          <PersistGate persistor={persistor}>
+            <AppRouterWithCategories />
+          </PersistGate>
         </Suspense>
       </Provider>
     );
