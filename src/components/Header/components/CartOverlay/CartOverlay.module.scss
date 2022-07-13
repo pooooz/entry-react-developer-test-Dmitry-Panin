@@ -7,8 +7,11 @@
 
 .background {
   position: absolute;
-  height: 100vh;
+  overflow: auto;
+  top: 51px;
+  left: 0;
   background: rgba(57, 55, 72, 0.22);
+  z-index: 2;
 }
 
 .overlay {
@@ -29,7 +32,7 @@
 
   &__list {
     max-height: 450px;
-    margin: 32px 0;
+    margin: 20px 0;
     padding: 3px;
     overflow: scroll;
     overflow-x: hidden;

@@ -29,6 +29,7 @@ class CartOverlay extends React.Component {
     };
 
     this.overlayRef = React.createRef();
+    this.cartIconRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -51,9 +52,10 @@ class CartOverlay extends React.Component {
 
   handleOutsideClick = (event) => {
     if (
+      this.state.isVisible &&
       this.overlayRef.current &&
       !this.overlayRef.current.contains(event.target) &&
-      this.state.isVisible
+      !this.cartIconRef.current.contains(event.target)
     ) {
       this.setState({ isVisible: false });
     }
@@ -68,60 +70,73 @@ class CartOverlay extends React.Component {
   }
 
   render() {
+    console.log(document.body.scrollHeight);
     const total = this.countTotal();
     return (
-      <div ref={this.overlayRef}>
+      <>
         <CartIcon
+          ref={this.cartIconRef}
           className={styles.header__cart_icon}
           onClick={() => this.setState({ isVisible: !this.state.isVisible })}
         />
         {this.state.isVisible && (
-          <div className={styles.overlay}>
-            <p>
-              <span className={styles.overlay__heading}>My Bag,</span>{' '}
-              {this.props.productsCount}{' '}
-              {this.props.productsCount === 1 ? 'item' : 'items'}
-            </p>
-            <ul className={styles.overlay__list}>
-              {this.props.products.map((elem, index) => (
-                <Fragment key={elem.id + index}>
-                  <li className={styles.overlay__element}>
-                    <ProductCard
-                      product={elem}
-                      currencyLabel={this.props.currencyLabel}
-                      changeQuantity={this.props.changeQuantity}
-                      theme="overlay"
-                    />
-                    <img
-                      src={elem.gallery[0]}
-                      alt="Product image"
-                      className={styles.overlay__image}
-                    />
-                  </li>
-                </Fragment>
-              ))}
-            </ul>
-            <div className={styles.overlay__total_wrap}>
-              <p className={styles.overlay__total}>Total:</p>
-              <span className={styles.overlay__total}>
-                {this.props.currencySymbol + total.toFixed(2)}
-              </span>
-            </div>
-            <form className={styles.overlay__form} onSubmit={this.handleSubmit}>
-              <NavLink
-                to="/cart"
-                className={styles.overlay__cart_button}
-                onClick={() => this.setState({ isVisible: false })}
+          <div
+            className={styles.background}
+            style={{
+              height: document.body.scrollHeight,
+              width: document.body.scrollWidth,
+            }}
+          >
+            <div className={styles.overlay} ref={this.overlayRef}>
+              <p>
+                <span className={styles.overlay__heading}>My Bag,</span>{' '}
+                {this.props.productsCount}{' '}
+                {this.props.productsCount === 1 ? 'item' : 'items'}
+              </p>
+              <ul className={styles.overlay__list}>
+                {this.props.products.map((elem, index) => (
+                  <Fragment key={elem.id + index}>
+                    <li className={styles.overlay__element}>
+                      <ProductCard
+                        product={elem}
+                        currencyLabel={this.props.currencyLabel}
+                        changeQuantity={this.props.changeQuantity}
+                        theme="overlay"
+                      />
+                      <img
+                        src={elem.gallery[0]}
+                        alt="Product image"
+                        className={styles.overlay__image}
+                      />
+                    </li>
+                  </Fragment>
+                ))}
+              </ul>
+              <div className={styles.overlay__total_wrap}>
+                <p className={styles.overlay__total}>Total:</p>
+                <span className={styles.overlay__total}>
+                  {this.props.currencySymbol + total.toFixed(2)}
+                </span>
+              </div>
+              <form
+                className={styles.overlay__form}
+                onSubmit={this.handleSubmit}
               >
-                View bag
-              </NavLink>
-              <button className={styles.overlay__order_button}>
-                Check out
-              </button>
-            </form>
+                <NavLink
+                  to="/cart"
+                  className={styles.overlay__cart_button}
+                  onClick={() => this.setState({ isVisible: false })}
+                >
+                  View bag
+                </NavLink>
+                <button className={styles.overlay__order_button}>
+                  Check out
+                </button>
+              </form>
+            </div>
           </div>
         )}
-      </div>
+      </>
     );
   }
 }
