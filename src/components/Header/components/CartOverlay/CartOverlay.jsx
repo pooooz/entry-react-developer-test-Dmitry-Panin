@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -7,19 +8,40 @@ import { ProductCard } from 'components/ProductCard/ProductCard';
 import { changeQuantity, order } from 'store/cart/cart';
 import styles from './CartOverlay.module.scss';
 
-const mapStateToProps = (state) => {
-  return {
-    products: state.cart.products,
-    currencyLabel: state.currency.label,
-    currencySymbol: state.currency.symbol,
-    productsCount: state.cart.productsCount,
-  };
-};
+const mapStateToProps = (state) => ({
+  products: state.cart.products,
+  currencyLabel: state.currency.label,
+  currencySymbol: state.currency.symbol,
+  productsCount: state.cart.productsCount,
+});
 
 const mapDispatchToProps = {
   changeQuantity,
   order,
 };
+
+const root = document.getElementById('root');
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = document.createElement('div');
+    this.el.className = styles.background;
+    this.el.style.width = document.body.scrollWidth + 'px';
+    this.el.style.height = document.body.scrollHeight + 'px';
+  }
+
+  componentDidMount() {
+    root.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    root.removeChild(this.el);
+  }
+
+  render() {
+    return ReactDOM.createPortal(this.props.children, this.el);
+  }
+}
 
 class CartOverlay extends React.Component {
   constructor(props) {
@@ -31,18 +53,6 @@ class CartOverlay extends React.Component {
     this.overlayRef = React.createRef();
     this.cartIconRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  countTotal() {
-    return this.props.products.reduce(
-      (sum, elem) =>
-        sum +
-        elem.prices.find(
-          (element) => element.currency.label === this.props.currencyLabel
-        ).amount *
-          elem.quantity,
-      0
-    );
   }
 
   handleSubmit(event) {
@@ -61,6 +71,18 @@ class CartOverlay extends React.Component {
     }
   };
 
+  countTotal() {
+    return this.props.products.reduce(
+      (sum, elem) =>
+        sum +
+        elem.prices.find(
+          (element) => element.currency.label === this.props.currencyLabel
+        ).amount *
+          elem.quantity,
+      0
+    );
+  }
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleOutsideClick);
   }
@@ -68,9 +90,7 @@ class CartOverlay extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleOutsideClick);
   }
-
   render() {
-    console.log(document.body.scrollHeight);
     const total = this.countTotal();
     return (
       <>
@@ -87,13 +107,7 @@ class CartOverlay extends React.Component {
           )}
         </div>
         {this.state.isVisible && (
-          <div
-            className={styles.background}
-            style={{
-              height: document.body.scrollHeight,
-              width: document.body.scrollWidth,
-            }}
-          >
+          <Modal>
             <div className={styles.overlay} ref={this.overlayRef}>
               <p>
                 <span className={styles.overlay__heading}>My Bag,</span>{' '}
@@ -141,7 +155,7 @@ class CartOverlay extends React.Component {
                 </button>
               </form>
             </div>
-          </div>
+          </Modal>
         )}
       </>
     );
